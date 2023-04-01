@@ -18,9 +18,12 @@ elForm.addEventListener("submit", evt =>{
 })
 
 async function getApi (searchInp,key){
-  let data = await fetch(`http://www.omdbapi.com/?apikey=${key}&s=${searchInp}`)
+  let data = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${searchInp}`)
   .then((res)=> res.json())
-  .then ((data)=> data.Search)
+  .then ((data)=> {
+    console.log(data);
+    return data.Search
+  })
   .catch((error)=> console.log(error))
   
   renderFunc(data,elList)
@@ -31,7 +34,7 @@ async function getApi (searchInp,key){
 function renderFunc(array,element){
   
   element.innerHTML = null;
-  array.forEach(film => {
+  array ? array.forEach(film => {
     let template = createTemp.cloneNode(true)
     
     let li = select("li",template)
@@ -71,7 +74,7 @@ function renderFunc(array,element){
       element.append(li)
       
     });
-  })
+  }) : null
 }
 function delBtn(){
   const modalTempa  = document.getElementById("modal");
