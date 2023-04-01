@@ -3,7 +3,7 @@ let selectName = select("#selectId")
 let elList = select("#list")
 let createTemp = select("#tempLi").content
 let modalTemplate = select("#modalTemp").content
-let key = "de6a11ad"
+let key = "58ed228a"
 
 elForm.addEventListener("submit", evt =>{
   evt.preventDefault()
@@ -18,7 +18,7 @@ elForm.addEventListener("submit", evt =>{
 })
 
 async function getApi (searchInp,key){
-  let data = await fetch(`https://www.omdbapi.com/?apikey=${key}&s=${searchInp}`)
+  let data = await fetch(`http://www.omdbapi.com/?apikey=${key}&s=${searchInp}`)
   .then((res)=> res.json())
   .then ((data)=> data.Search)
   .catch((error)=> console.log(error))
